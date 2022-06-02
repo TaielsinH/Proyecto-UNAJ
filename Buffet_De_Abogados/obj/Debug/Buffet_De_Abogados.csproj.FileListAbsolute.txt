@@ -1,0 +1,12 @@
+C:\Users\Emi\Documents\SharpDevelop Projects\Proyecto 1\Buffet_De_Abogados\obj\Debug\Buffet_De_Abogados.csprojResolveAssemblyReference.cache
+C:\Users\Emi\Documents\SharpDevelop Projects\Proyecto 1\Buffet_De_Abogados\bin\Debug\Buffet_De_Abogados.exe.config
+C:\Users\Emi\Documents\SharpDevelop Projects\Proyecto 1\Buffet_De_Abogados\bin\Debug\Buffet_De_Abogados.exe
+C:\Users\Emi\Documents\SharpDevelop Projects\Proyecto 1\Buffet_De_Abogados\bin\Debug\Buffet_De_Abogados.pdb
+C:\Users\Emi\Documents\SharpDevelop Projects\Proyecto 1\Buffet_De_Abogados\obj\Debug\Buffet_De_Abogados.exe
+C:\Users\Emi\Documents\SharpDevelop Projects\Proyecto 1\Buffet_De_Abogados\obj\Debug\Buffet_De_Abogados.pdb
+C:\Users\eigit\Desktop\unaj\algoritmos\tp entrega\camer\Proyecto 1\Buffet_De_Abogados\obj\Debug\Buffet_De_Abogados.csprojResolveAssemblyReference.cache
+C:\Users\eigit\Desktop\unaj\algoritmos\tp entrega\camer\Proyecto 1\Buffet_De_Abogados\obj\Debug\Buffet_De_Abogados.exe
+C:\Users\eigit\Desktop\unaj\algoritmos\tp entrega\camer\Proyecto 1\Buffet_De_Abogados\bin\Debug\Buffet_De_Abogados.exe.config
+C:\Users\eigit\Desktop\unaj\algoritmos\tp entrega\camer\Proyecto 1\Buffet_De_Abogados\bin\Debug\Buffet_De_Abogados.exe
+C:\Users\eigit\Desktop\unaj\algoritmos\tp entrega\camer\Proyecto 1\Buffet_De_Abogados\bin\Debug\Buffet_De_Abogados.pdb
+C:\Users\eigit\Desktop\unaj\algoritmos\tp entrega\camer\Proyecto 1\Buffet_De_Abogados\obj\Debug\Buffet_De_Abogados.pdb
