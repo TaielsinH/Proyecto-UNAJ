@@ -34,6 +34,7 @@ namespace Buffet_De_Abogados
 				Console.WriteLine("i) Salir del programa");
 				Console.Write("seleccione una opcion del menu: ");
 				r = Console.ReadLine();
+				Console.WriteLine("");
 				switch(r){
 					case "a":
 						b1.agregarAbogado();
@@ -47,15 +48,15 @@ namespace Buffet_De_Abogados
 					case "d":
 						b1.listadoExpediente();
 						break;
-//					case "e":
-//						b1.agregarExpediente(exp1, a1);
-//						break;
-//					case "f":
-//						b1.Modificar_expediente();
-//						break;
-//					case "g":
-//						b1.Eliminar_Expediente_Por_Numero();
-//						break;
+					case "e":
+						b1.agregarExpediente();
+						break;
+					case "f":
+						b1.modificar_estado_expediente();
+						break;
+					case "g":
+						b1.Eliminar_Expediente_Por_Numero();
+						break;
 //					case "h":
 //						b1.Imprimir_Audiencias_mes();
 //					break;
@@ -70,7 +71,8 @@ namespace Buffet_De_Abogados
 			
 			Console.Write("Press any key to continue . . . ");
 			Console.ReadKey(true);
+			
 		}
-		public class ExcepcionExpedientes : Exception {}
 	}
+	public class ExcepcionExpedientes : Exception {}
 }

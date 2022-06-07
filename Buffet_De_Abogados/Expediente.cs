@@ -22,6 +22,8 @@ namespace Buffet_De_Abogados
 		private int DNIabogado;
 		private DateTime fecha;
 		
+		public Expediente(){}
+		
 		public Expediente(int numero, string titular, string tipo_tramite, DateTime fecha)
 		{
 			this.numero = numero;
@@ -34,6 +36,11 @@ namespace Buffet_De_Abogados
 		public int Numero{
 			set{numero = value;}
 			get{return numero;}
+		}
+		
+		public int DNIAbogado{
+			set{DNIabogado = value;}
+			get{return DNIabogado;}
 		}
 		
 		public string Titular{
@@ -55,9 +62,5 @@ namespace Buffet_De_Abogados
 			Console.WriteLine("Número: {0}, Titular: {1}, Tipo de Tramite: {2}, Estado: {3}, DNI del abogado a cargo: {4} \n", numero, titular, tipo_tramite, estado, DNIabogado);
 		}
 		
-//		public void mostrarInfoExp()
-//        {
-//            Console.WriteLine("Número: {0}, Titular: {1}, Tipo de Tramite: {2}, Estado: {3}, Abogado a Cargo: {4} {5} \n", numero, titular, tipo_tramite, estado, abogado.Nombre, abogado.Apellido);
-//        }
 	}
 }

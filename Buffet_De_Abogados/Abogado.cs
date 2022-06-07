@@ -20,7 +20,9 @@ namespace Buffet_De_Abogados
 		private int dni;
 		private string especialidad;
 		private int cantExpediente;
-		private int [] vectorExpedientes;
+		private int? [] vectorExpedientes;
+		
+		public Abogado (){}
 		
 		public Abogado(string nombre,string apellido,int dni, string especialidad)
 		{
@@ -29,7 +31,7 @@ namespace Buffet_De_Abogados
 			this.dni=dni;
 			this.especialidad=especialidad;
 			cantExpediente = 0;	
-			vectorExpedientes = new int[6];
+			vectorExpedientes = new int?[6];
 		}
 		
 		public string Nombre{
@@ -73,25 +75,23 @@ namespace Buffet_De_Abogados
             Console.WriteLine("Nombre: {0}, Apellido: {1}, DNI: {2}, Especialidad: {3}, Expedientes a Cargo: {4} \n", nombre, apellido, dni, especialidad, cantExpediente);
         }
 
-//        public void asignarExpediente(Expediente exp)
-//        {
-//            for (int i=0; i<cantExpediente; i++)
-//            {
-//            	if (cantExpediente == 0){
-//            		vectorExpedientes[i] = exp;
-//            		cantExpediente++;
-//            		exp.Estado = true;
-//            	}
-//            	
-//            	else{
-//            		if ((exp.Estado == false) && (exp.Numero != vectorExpedientes[i].Numero))
-//                		{
-//                   			vectorExpedientes[i] = exp;
-//                    		cantExpediente++;
-//                    		exp.Estado = true;
-//                		}
-//            	}
-//            }
-//        }
+        public void asignarExpediente(int exp)
+        {
+        	vectorExpedientes[cantExpediente] = exp;
+        	cantExpediente++;
+        }
+        
+        public void eliminarExpediente(int exp)
+        {
+        	for (int i = 0; i<vectorExpedientes.Length; i++)
+        	{
+        		if (vectorExpedientes[i] == exp)
+        		{
+        			vectorExpedientes[i] = null;
+        			cantExpediente = cantExpediente - 1;
+        		}
+        	}
+        }
+        
 	}
 }

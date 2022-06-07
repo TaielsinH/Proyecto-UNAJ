@@ -33,10 +33,6 @@ namespace Buffet_De_Abogados
 			get{return name;}
 		}
 		
-//		public Abogado [] AbogadosContratados{
-//			get{return abogadosContratados;}
-//		}
-		
 		public void agregarAbogado(){
 			if (cant < 5) { //si hay menos de 5 abogados
 				Console.Write("Ingrese DNI del abogado: ");
@@ -44,7 +40,7 @@ namespace Buffet_De_Abogados
 				int i = 0;
 				bool verificar = false;
 				while((i<cant)&&(verificar == false)){
-					if(abogadosContratados[i].Dni == dni){
+					if (abogadosContratados[i].Dni == dni){
 						verificar = true;
 					}
 					i++;
@@ -58,6 +54,7 @@ namespace Buffet_De_Abogados
 					string especialidad = Console.ReadLine();
 					Abogado a1 = new Abogado (nombre, apellido, dni, especialidad);
 					abogadosContratados[cant] = a1;
+					Console.WriteLine("");
 					a1.mostrarInfoAbg();
 					cant++;
 				}
@@ -95,7 +92,6 @@ namespace Buffet_De_Abogados
 		
 		public void listadoAbogados()
         {
-			Console.WriteLine("");
             for (int i = 0; i < cant; i++)
             {
                 abogadosContratados[i].mostrarInfoAbg();
@@ -110,72 +106,149 @@ namespace Buffet_De_Abogados
             }
         }
 
-//        public void agregarExpediente(){
-//        	Console.WriteLine("ingrese numero de expediente: ");
-//        	int numExp = int.Parse(Console.ReadLine()); //verifico si ya existe el expediente
-//        	bool saber = verificarExpediente(numExp);
-//            if (saber == false){
-//        		Console.WriteLine("ingrese nombre del titular: ");
-//        		string titular = Console.ReadLine();
-//        		Console.WriteLine("ingrese nombre del tramite: ");
-//        		string tramite = Console.ReadLine();
-//        		Expediente exp = new Expediente(numExp, titular, tramite, DateTime.Today);
-//                for (int i = 0; i<cant; i++){
-//                    try{
-//                        if (abogadosContratados[i].Dni == ab.Dni){
-//                            if (abogadosContratados[i].CantExpedientes <= 6){
-//                                ab.CantExpedientes++;
-//                                ab.asignarExpediente(exp);
-//                                Console.WriteLine("El expediente fue asignado con exito");
-//                            }
-//
-//                            else{
-//                                throw new ExcepcionExpedientes();
-//                            }
-//                        }
-//                    }
-//
-//                    catch (ExcepcioExpedientes){
-//                        Console.WriteLine("El abogado ya tiene 6 expedientes a cargo, los abogados que pueden tienen disponibilidad son: ");
-//                        int j = 0;
-//                        for (int k = 0; k<cant; i++){
-//                            if (abogadosContratados[i].CantExpedientes <= 6){
-//                                abogadosContratados[i].mostrarInfoAbg();
-//                                j++;
-//                            }
-//                        }
-//                        if (j >= 1){
-//                            Console.WriteLine("Que abogado deseas elegir de los disponibles: (Ingresa du DNI)");
-//                            int dni1 = int.Parse(Console.ReadLine());
-//                            for (int q = 0; q < abogadosContratados.Length; q++){
-//                                if (abogadosContratados[q].Dni == dni1){
-//                                    abogadosContratados[q].asignarExpediente(exp);
-//                                    abogadosContratados[q].CantExpedientes++;
-//                                    break;
-//                                }
-//                            }
-//                        }
-//                        else{
-//                            Console.WriteLine("Lo sentimos, no tenemos abogados disponibles por el momento");
-//                        }
-//                    }
-//                }
-//            }
-//            else {
-//            	Console.WriteLine("El expediente ya existe");
-//            }
-//        }
-//        
-//        public bool verificarExpediente(int numExp)//controla si existe el expediente
-//        {
-//        	bool verificar;
-//        	for(int i = 0; i<listaExpediente.Count ; i++){
-//        		verificar = abogadosContratados[i].tieneExpediente(numExp);
-//        		if(!verificar){
-//        			break;
-//        		}
-//            }
-//            return verificar;
-//        }
+        public void agregarExpediente(){
+        	Console.Write("ingrese numero de expediente: ");
+        	int numExp = int.Parse(Console.ReadLine()); //verifico si ya existe el expediente
+        	bool saber = verificarExpediente(numExp);
+            if (saber == false){
+        		Console.Write("ingrese nombre del titular: ");
+        		string titular = Console.ReadLine();
+        		Console.Write("ingrese nombre del tramite: ");
+        		string tramite = Console.ReadLine();
+        		Console.Write("Ingrese la fecha en formato aaaa/mm/dd solo con numeros: ");
+        		string ingresoFecha = Console.ReadLine();
+        		char separador = '/'; //defino caracter que es criterio de division de string
+        		string [] partes = ingresoFecha.Split(separador); //divido el string ingresado y lo pongo en un vector
+        		int año = int.Parse(partes[0]);
+        		int mes = int.Parse(partes[1]);
+        		int dia = int.Parse(partes[2]);      //defino variables con partes del vector
+        		DateTime fecha = new DateTime(año, mes, dia); //Acá termina el código para la fecha
+        		Expediente exp = new Expediente(numExp, titular, tramite, fecha); //creo el expediente
+        		bool salir = false;
+        		int aux;
+        		while (!salir){ 
+                    try{
+        				if (cant != 0){
+        					Console.Write("seleccione el abogado al que desea asignarle (0 - " + (cant - 1) + ")el expediente o ingrese -1 para salir: ");
+        					aux = int.Parse(Console.ReadLine());
+        					if (aux > -1 && aux < cant){
+        						if (abogadosContratados[aux].CantExpedientes < 6){    //asignacion del expediente
+        							exp.DNIAbogado = abogadosContratados[aux].Dni;
+        							abogadosContratados[aux].asignarExpediente(exp.Numero);
+        							salir = true;
+        							listaExpediente.Add(exp);
+        							Console.WriteLine("\nse asigno con exito el expediente \n");
+        						}
+        						else{
+        							throw new ExcepcionExpedientes();
+        						}
+        					}
+        					else{
+        						if (aux == -1){ //si elijo salir
+        							salir = true;
+        						}
+        						else{
+        							Console.WriteLine("la opcion ingresada no es valida, trate de nuevo \n");
+        						}
+        					}
+        				}
+        				else{        //si no se agregaron abogados al buffet
+        					Console.WriteLine("no hay abogados contratados, se aborta la asignacion \n");
+        					salir = true;
+        				}
+                    }
+                    catch (ExcepcionExpedientes){
+        				Console.WriteLine("el abogado ya tiene 6 expedientes, trate con otro \n");
+                    }
+        			catch (Exception){
+        				Console.WriteLine("se produjo una excepcion desconocida \n");
+        			}
+                }
+            }
+            else {
+            	Console.WriteLine("El expediente ya existe \n");
+            }
+        }
+        
+        public bool verificarExpediente(int numExp)//controla si existe el expediente
+        {
+        	bool verificar = false;
+        	Expediente e;
+        	for(int i = 0; i<listaExpediente.Count ; i++){
+        		e = (Expediente)listaExpediente[i];
+        		if (e.Numero == numExp){
+        			verificar = true;
+        			break;
+        		}
+            }
+            return verificar;
+        }
+        
+        public void modificar_estado_expediente(){
+        	Console.Write("ingrese el numero de expediente que desea modificar: ");
+        	int num = int.Parse(Console.ReadLine());
+        	int pos;
+        	bool tiene = false;
+        	Expediente aux = new Expediente();
+			for (int i = 0; i < listaExpediente.Count; i++){
+        		aux = (Expediente)listaExpediente[i];
+        		if (num == aux.Numero){
+					tiene = true;
+					pos = i;
+					break;
+				}
+			}
+        	if (tiene){
+        		aux.Estado = !(aux.Estado);
+        		Console.WriteLine("se modifico el expediente correctamente\n");
+        	}
+        	else{
+        		Console.WriteLine("no existe el numero de expediente ingresado\n");
+        	}        	
+        }
+		public void Eliminar_Expediente_Por_Numero()
+		{
+			Console.Write("Ingrese el número e expediente a eliminar: ");
+			int numE = int.Parse(Console.ReadLine());
+			Expediente aux = new Expediente();
+			bool encontrado = false; //true = encontró el elemento con el numero. false = no lo encontró
+			
+			
+			for (int i = 0; i< listaExpediente.Count; i++)
+			{
+				
+				aux = (Expediente)listaExpediente[i];
+				if (numE == aux.Numero){
+					auxiliarEliminar(aux);
+					listaExpediente.RemoveAt(i);
+					encontrado = true;
+					
+				}
+			}
+			if (encontrado){
+				Console.WriteLine("Se borró el expediente pedido\n");
+			}
+			else{
+				Console.WriteLine("No existe el expediente con el número ingresado\n");
+			}
+		}
+		public void auxiliarEliminar(Expediente aux)
+		{
+			for (int i = 0; i<abogadosContratados.Length; i++)
+			{
+//				Abogado abo = new Abogado();
+//				abo = abogadosContratados[i];
+				int dni1 = (int) aux.DNIAbogado;
+				
+				if (dni1 == (int)abogadosContratados[i].Dni)
+				{
+					int expedientePedido = (int) aux.Numero;
+					abogadosContratados[i].eliminarExpediente(expedientePedido);
+					break;
+						
+				}
+			}
+		}
+	
 	}
 }
